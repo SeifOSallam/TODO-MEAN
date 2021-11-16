@@ -7,13 +7,15 @@ import {  MatCardModule } from '@angular/material/card';
 import {  MatButtonModule } from '@angular/material/button';
 import {  MatToolbarModule } from '@angular/material/toolbar';
 import {  MatExpansionModule } from '@angular/material/expansion';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { HeaderComponent } from './header/header.component';
 import { PostListComponent } from './post-list/post-list.component';
+import { PostEditComponent } from './post-edit/post-edit.component';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -21,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     PostCreateComponent,
     HeaderComponent,
-    PostListComponent
+    PostListComponent,
+    PostEditComponent
   ],
   imports: [
     BrowserModule,
@@ -32,8 +35,11 @@ import { HttpClientModule } from '@angular/common/http';
     MatCardModule,
     MatButtonModule,
     MatToolbarModule,
+    MatFormFieldModule,
     MatExpansionModule,
+    MatDialogModule,
     HttpClientModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
