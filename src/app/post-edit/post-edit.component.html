@@ -1,0 +1,25 @@
+<form (submit) = "onFormSubmit(form)" #form = "ngForm">
+    <mat-form-field>
+        <textarea
+            matInput
+            rows="4"
+            [ngModel] = "content"
+            name = "content"
+            required
+            placeholder="What to do?"
+            #content1 = "ngModel"></textarea>
+            <mat-error *ngIf="content1.invalid">Please Enter a what you will do!</mat-error>
+    </mat-form-field>
+    
+    <mat-action-row>
+        <button
+        mat-raised-button
+        color = "primary"
+        type = "submit">Save</button>
+    <button
+        mat-raised-button
+        color = "worn"
+        (click) = "close()">Cancel</button>
+    </mat-action-row>
+
+</form>
