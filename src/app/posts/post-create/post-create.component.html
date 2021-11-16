@@ -1,0 +1,19 @@
+<mat-card>
+    <form (submit) = "onAddPost(postForm)" #postForm = "ngForm">
+        <mat-form-field>
+            <textarea
+                matInput
+                rows="4"
+                name = "content"
+                ngModel
+                required
+                placeholder="What to do?"
+                #content = "ngModel"></textarea>
+                <mat-error *ngIf="content.invalid">Please Enter a what you will do!</mat-error>
+        </mat-form-field>
+        <button
+            mat-raised-button
+            color = "primary"
+            type = "submit">Add Task</button>
+    </form>
+</mat-card>
