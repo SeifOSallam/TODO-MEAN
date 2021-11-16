@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Post } from './posts/post.module';
+import { WebRequestService } from './web-request.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +12,10 @@ export class PostService {
 
   private postsUpdated = new Subject<Post[]>();
 
-  constructor() { }
+  constructor(private webReqService: WebRequestService) { }
 
   getPosts() {
-    return [...this.posts]; //copy elements not refrence it.
+    return this.webReqService.get('api/posts');
   }
 
   getPostUpdateListner() {
@@ -22,12 +23,7 @@ export class PostService {
   }
 
   addPost(content: string) {
-    const post: Post = {
-      content: content
-    };
-
-    this.posts.push(post);
-    this.postsUpdated.next([...this.posts]);
+    return this.webReqService.post('api/posts', { content });
 
   }
   
