@@ -14,7 +14,7 @@ import { PostEditComponent } from "../post-edit/post-edit.component";
     templateUrl: './post-list.component.html',
     styleUrls: ['./post-list.component.css']
 })
-export class PostListComponent implements OnInit , OnDestroy {
+export class PostListComponent implements OnInit{
 
     //posts = [
     //    { title: 'First Post' , content: 'This is the first post\'s content' },
@@ -22,9 +22,8 @@ export class PostListComponent implements OnInit , OnDestroy {
     //    { title: 'Third Post' , content: 'This is the third post\'s content' }
     //];
 
-    posts:Post[] = [];
+    posts: Post[] = [];
 
-    private postsSub: Subscription = new Subscription;
 
     //postService: PostService;
 
@@ -33,10 +32,9 @@ export class PostListComponent implements OnInit , OnDestroy {
     }
 
     ngOnInit() {
-        this.posts = this.postService.getPosts();
+        //this.posts = this.postService.getPosts();
 
-        this.postsSub = this.postService.getPostUpdateListner()
-            .subscribe((posts: Post[]) => {
+         this.postService.getPosts().subscribe((posts: any) => {
             this.posts = posts;
         });
     }
@@ -58,10 +56,6 @@ export class PostListComponent implements OnInit , OnDestroy {
               }
           })
 
-    }
-
-    ngOnDestroy() {
-        this.postsSub.unsubscribe();
     }
 
 }
