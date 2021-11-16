@@ -24,7 +24,6 @@ export class PostListComponent implements OnInit{
 
     posts: Post[] = [];
 
-
     //postService: PostService;
 
     constructor (public postService: PostService , public dialog: MatDialog) { // angular makes postService member and assign it.
@@ -32,15 +31,20 @@ export class PostListComponent implements OnInit{
     }
 
     ngOnInit() {
-        //this.posts = this.postService.getPosts();
 
-         this.postService.getPosts().subscribe((posts: any) => {
+
+
+
+         this.postService.getPosts().subscribe((posts: Post[]) => {
             this.posts = posts;
         });
     }
 
-    deletePost(content: string) {
-        this.postService.deletePost(content);
+    deletePost(post: Post) {
+        this.postService.deletePost(post).subscribe(()=>{
+            console.log("Deleted "+post._id);
+            location.reload();
+        });
     }
 
     editePost(content: string) {

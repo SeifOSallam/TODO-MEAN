@@ -30,12 +30,8 @@ export class PostService {
     return this.webReqService.patch('api/posts', { content });
   }
   
-  deletePost(content: string) {
-    this.posts.forEach((p , indx) => {
-      if(p.content == content)
-        this.posts.splice(indx , 1);
-    })
-    this.postsUpdated.next([...this.posts]);
+  deletePost(post: Post) {
+    return this.webReqService.delete(`api/posts/${post._id}`);
   }
 
 }
