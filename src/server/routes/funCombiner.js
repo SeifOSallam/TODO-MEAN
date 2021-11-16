@@ -1,44 +1,44 @@
-const Task = require("../models/task");
+const Post = require("../models/post");
 const User = require("../models/user");
 const express = require("express");
 const router = express.Router();
 
 
 
-router.post("/tasks", async (req, res) => {
+router.post("/posts", async (req, res) => {
     try {
-        const task = await new Task(req.body).save();
-        res.send(task);
+        const post = await new Post(req.body).save();
+        res.send(post);
     } catch (error) {
         res.send(error);
     }
 });
 
-router.get("/tasks", async (req, res) => {
+router.get("/posts", async (req, res) => {
     try {
-        const tasks = await Task.find();
-        res.send(tasks);
+        const posts = await Post.find();
+        res.send(posts);
     } catch (error) {
         res.send(error);
     }
 });
 
-router.put("/tasks/:id", async (req, res) => {
+router.put("/posts/:id", async (req, res) => {
     try {
-        const task = await Task.findOneAndUpdate(
+        const post = await Post.findOneAndUpdate(
             { _id: req.params.id },
             req.body
         );
-        res.send(task);
+        res.send(post);
     } catch (error) {
         res.send(error);
     }
 });
 
-router.delete("/tasks/:id", async (req, res) => {
+router.delete("/posts/:id", async (req, res) => {
     try {
-        const task = await Task.findByIdAndDelete(req.params.id);
-        res.send(task);
+        const post = await Post.findByIdAndDelete(req.params.id);
+        res.send(post);
     } catch (error) {
         res.send(error);
     }
