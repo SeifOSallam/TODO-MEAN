@@ -5,6 +5,8 @@ import { PostService } from "../post.service";
 import { NgForm } from '@angular/forms'
 
 import { Post } from '../posts/post.module'
+import { MatDialog, MatDialogModule } from "@angular/material/dialog";
+import { PostEditComponent } from "../post-edit/post-edit.component";
 
 
 @Component({
@@ -26,7 +28,7 @@ export class PostListComponent implements OnInit , OnDestroy {
 
     //postService: PostService;
 
-    constructor (public postService: PostService) { // angular makes postService member and assign it.
+    constructor (public postService: PostService , public dialog: MatDialog) { // angular makes postService member and assign it.
         //this.postService = postService;
     }
 
@@ -41,6 +43,21 @@ export class PostListComponent implements OnInit , OnDestroy {
 
     deletePost(content: string) {
         this.postService.deletePost(content);
+    }
+
+    editePost(content: string) {
+
+        let dialogRef = this.dialog.open(PostEditComponent, {
+            width: '700px',
+            data: content
+          });
+
+          dialogRef.afterClosed().subscribe((result) => {
+              if(result) {
+                  this.postService.replacePost(content , result);
+              }
+          })
+
     }
 
     ngOnDestroy() {
