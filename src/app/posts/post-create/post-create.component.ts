@@ -1,7 +1,7 @@
 import { Component } from "@angular/core"
 import { NgForm } from "@angular/forms";
 import { PostService } from "src/app/post.service";
-
+import { Post } from "src/app/posts/post.module";
 //import { Post } from '../post.module'
 
 @Component({
@@ -29,9 +29,10 @@ export class PostCreateComponent {
 
         //this.postService.addPost(form.value.content);
         return this.postService.addPost(form.value.content)
-        .subscribe((response: any) =>{
-            console.log(response);
+        .subscribe((post: Post) =>{
+            console.log(post);
             form.resetForm();
+            location.reload();
         })
         
         
