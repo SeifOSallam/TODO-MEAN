@@ -1,15 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PostEditComponent } from './post-edit/post-edit.component';
-import { PostListComponent } from './post-list/post-list.component';
-import { PostCreateComponent } from './posts/post-create/post-create.component';
+import { LoginComponent } from './login/login.component';
+import { PostsViewComponent } from './posts-view/posts-view.component';
+import { SingupComponent } from './singup/singup.component';
+
 const routes: Routes = [
-  { path: "", component:PostListComponent},
-  { path: "", component:PostCreateComponent},
-  { path: "", component:PostEditComponent},
-  //{ path: "", component:PostListComponent},
-  //{ path: "", component:PostCreateComponent},
-  //{ path: "", component:PostEditComponent}
+  { path: '' , component: LoginComponent },
+  { path: 'signup', component: SingupComponent },
+  { path: 'signed/:userID' , component: PostsViewComponent },
 ];
 
 @NgModule({
