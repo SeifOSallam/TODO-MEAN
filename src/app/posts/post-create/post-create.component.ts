@@ -2,7 +2,9 @@ import { Component } from "@angular/core"
 import { NgForm } from "@angular/forms";
 import { PostService } from "src/app/post.service";
 import { Post } from "src/app/posts/post.module";
-//import { Post } from '../post.module'
+import { ActivatedRoute, Params } from '@angular/router';
+
+
 
 @Component({
     selector: 'app-post-create',
@@ -13,7 +15,7 @@ export class PostCreateComponent {
     
     enteredContent = '';
 
-    constructor(public postService: PostService) {
+    constructor(public postService: PostService,public route: ActivatedRoute) {
 
     }
 
@@ -28,7 +30,7 @@ export class PostCreateComponent {
        //     };
 
         //this.postService.addPost(form.value.content);
-        return this.postService.addPost(form.value.content)
+        return this.postService.addPost(form.value.content, this.route.snapshot.paramMap.get('userID')!)
         .subscribe((post: Post) =>{
             console.log(post);
             form.resetForm();

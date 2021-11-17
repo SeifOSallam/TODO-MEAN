@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
 import { Post } from './posts/post.module';
 import { WebRequestService } from './web-request.service';
 
@@ -8,30 +7,23 @@ import { WebRequestService } from './web-request.service';
 })
 export class PostService {
 
-  private posts:Post[] = [];
-
-  private postsUpdated = new Subject<Post[]>();
 
   constructor(private webReqService: WebRequestService) { }
 
-  getPosts() {
-    return this.webReqService.get('api/posts');
+  getPosts(userID: string) {
+    return this.webReqService.get(`api/users/${userID}/posts`);
   }
 
-  getPostUpdateListner() {
-    return this.postsUpdated.asObservable();
-  }
-
-  addPost(content: string) {
-    return this.webReqService.post('api/posts', { content });
+  addPost(content: string, userID: string) {
+    return this.webReqService.post(`api/users/${userID}/posts`, { content });
 
   }
-  replacePost(content: string, result: string) {
-    return this.webReqService.patch('api/posts', { content });
+  replacePost(firstPost: Post, secondPost: Post, userID: string) {
+    return this.webReqService.patch(`api/users/${userID}/posts/${firstPost._id}`, { content: secondPost.content });
   }
   
-  deletePost(post: Post) {
-    return this.webReqService.delete(`api/posts/${post._id}`);
+  deletePost(post: Post, userID:string) {
+    return this.webReqService.delete(`api/users/${userID}/posts/${post._id}`);
   }
 
 }

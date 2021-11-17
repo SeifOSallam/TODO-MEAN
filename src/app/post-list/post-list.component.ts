@@ -1,6 +1,7 @@
 import { Component , OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 import { PostService } from "../post.service";
+import { ActivatedRoute, Params } from '@angular/router';
 
 import { NgForm } from '@angular/forms'
 
@@ -26,37 +27,42 @@ export class PostListComponent implements OnInit{
 
     //postService: PostService;
 
-    constructor (public postService: PostService , public dialog: MatDialog) { // angular makes postService member and assign it.
+    constructor (public postService: PostService , public dialog: MatDialog, public route: ActivatedRoute) { // angular makes postService member and assign it.
         //this.postService = postService;
     }
-
+    
     ngOnInit() {
+        let userID:string;
+        this.route.params.subscribe((params: Params)=>{
+            console.log(params);
+          })
+          userID=this.route.snapshot.paramMap.get('userID')!;
+          console.log(userID);
 
-
-
-
-         this.postService.getPosts().subscribe((posts: Post[]) => {
+         this.postService.getPosts(userID).subscribe((posts: Post[]) => {
             this.posts = posts;
         });
     }
 
     deletePost(post: Post) {
-        this.postService.deletePost(post).subscribe(()=>{
+        this.postService.deletePost(post,this.route.snapshot.paramMap.get('userID')!).subscribe(()=>{
             console.log("Deleted "+post._id);
             location.reload();
         });
     }
 
-    editePost(content: string) {
-
+    editePost(post: Post) {
         let dialogRef = this.dialog.open(PostEditComponent, {
             width: '700px',
-            data: content
+            data: post.content
           });
 
-          dialogRef.afterClosed().subscribe((result) => {
+          dialogRef.afterClosed().subscribe((result: Post) => {
               if(result) {
-                  this.postService.replacePost(content , result);
+                  this.postService.replacePost(post , result, this.route.snapshot.paramMap.get('userID')!)
+                  .subscribe(() =>{
+                      console.log(result); 
+                  });
               }
           })
 

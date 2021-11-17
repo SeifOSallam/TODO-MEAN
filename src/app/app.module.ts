@@ -9,6 +9,7 @@ import {  MatToolbarModule } from '@angular/material/toolbar';
 import {  MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,11 @@ import { HeaderComponent } from './header/header.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PostsViewComponent } from './posts-view/posts-view.component';
+import { LoginComponent } from './login/login.component';
+import { SingupComponent } from './singup/singup.component';
+
+
 
 @NgModule({
   declarations: [
@@ -24,7 +30,10 @@ import { HttpClientModule } from '@angular/common/http';
     PostCreateComponent,
     HeaderComponent,
     PostListComponent,
-    PostEditComponent
+    PostEditComponent,
+    PostsViewComponent,
+    LoginComponent,
+    SingupComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +47,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatFormFieldModule,
     MatExpansionModule,
     MatDialogModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
 
   ],
   providers: [],
