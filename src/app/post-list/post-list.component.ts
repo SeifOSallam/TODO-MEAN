@@ -30,16 +30,15 @@ export class PostListComponent implements OnInit{
     constructor (public postService: PostService , public dialog: MatDialog, public route: ActivatedRoute) { // angular makes postService member and assign it.
         //this.postService = postService;
     }
-    
+    userID:string;
     ngOnInit() {
-        let userID:string;
         this.route.params.subscribe((params: Params)=>{
             console.log(params);
           })
-          userID=this.route.snapshot.paramMap.get('userID')!;
-          console.log(userID);
+          this.userID=this.route.snapshot.paramMap.get('userID')!;
+          console.log(this.userID);
 
-         this.postService.getPosts(userID).subscribe((posts: Post[]) => {
+         this.postService.getPosts(this.userID).subscribe((posts: Post[]) => {
             this.posts = posts;
         });
     }
@@ -56,14 +55,15 @@ export class PostListComponent implements OnInit{
             width: '700px',
             data: post.content
           });
-
+          
           dialogRef.afterClosed().subscribe((result: Post) => {
-              if(result) {
-                  this.postService.replacePost(post , result, this.route.snapshot.paramMap.get('userID')!)
-                  .subscribe(() =>{
-                      console.log(result); 
+            console.log(post);
+            console.log(result);
+              this.postService.replacePost(post , result, this.userID)
+              .subscribe((resulted: Post) =>{
+                  console.log("Post: " + post);
+                  console.log("Result: " + resulted); 
                   });
-              }
           })
 
     }

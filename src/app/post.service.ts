@@ -19,7 +19,7 @@ export class PostService {
 
   }
   replacePost(firstPost: Post, secondPost: Post, userID: string) {
-    return this.webReqService.patch(`api/users/${userID}/posts/${firstPost._id}`, { content: secondPost.content });
+    return this.webReqService.put(`api/users/${userID}/posts/${firstPost._id}`, { content: secondPost.content });
   }
   
   deletePost(post: Post, userID:string) {

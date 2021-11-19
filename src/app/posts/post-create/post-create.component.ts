@@ -33,8 +33,9 @@ export class PostCreateComponent {
         return this.postService.addPost(form.value.content, this.route.snapshot.paramMap.get('userID')!)
         .subscribe((post: Post) =>{
             console.log(post);
+            console.log(this.route.snapshot.paramMap.get('userID')!);
             form.resetForm();
-            location.reload();
+            //location.reload();
         })
         
         
