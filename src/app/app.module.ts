@@ -10,8 +10,6 @@ import {  MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FlexLayoutModule } from '@angular/flex-layout';
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { PostsViewComponent } from './posts-view/posts-view.component';
 import { LoginComponent } from './login/login.component';
 import { SingupComponent } from './singup/singup.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { HeaderXComponent } from './headerX/headerX.component';
 
 
 
@@ -35,7 +35,8 @@ import { SingupComponent } from './singup/singup.component';
     PostEditComponent,
     PostsViewComponent,
     LoginComponent,
-    SingupComponent
+    SingupComponent,
+    HeaderXComponent
   ],
   imports: [
     BrowserModule,
@@ -48,10 +49,10 @@ import { SingupComponent } from './singup/singup.component';
     MatToolbarModule,
     MatFormFieldModule,
     MatExpansionModule,
+    FlexLayoutModule,
     MatDialogModule,
     HttpClientModule,
-    ReactiveFormsModule,
-    FlexLayoutModule
+    ReactiveFormsModule
 
   ],
   providers: [],
