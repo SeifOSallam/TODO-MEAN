@@ -43,9 +43,6 @@ export class LoginComponent implements OnInit {
               console.log(true);
               this.router.navigate(['/signed', usr._id]);
             }
-        else {
-          console.log(false);
-        }
       });
     })
     
